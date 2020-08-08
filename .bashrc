@@ -15,9 +15,12 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# For setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+# Write history every time a command completes
+PROMPT_COMMAND='history -a;history -n;echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -76,9 +79,4 @@ add_path "$HOME/.local/opt/node/bin"
 
 export NLTK_DATA=$HOME/.local/nltk_data
 
-# Configure starship prompt
-function set_xterm_title() {
-    echo -ne "\033]0; $USER@$HOSTNAME: $PWD \007"
-}
-starship_precmd_user_func="set_xterm_title"
 eval "$(starship init bash)"
