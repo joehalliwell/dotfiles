@@ -34,7 +34,7 @@ alias wttr="curl https://wttr.in"
 alias words="find . -type f -print0 | sort -z | wc -w --files0-from - | tail -n1"
 
 # System management
-alias dotfiles="git --git-dir=$HOME/work/dotfiles --work-tree=$HOME"
+alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
 function up() {
     sudo apt update
     sudo apt -y full-upgrade
