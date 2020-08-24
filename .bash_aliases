@@ -32,7 +32,12 @@ alias paste="xclip -selection clipboard -out"
 # Mini apps
 alias wttr="curl https://wttr.in"
 alias words="find . -type f -print0 | sort -z | wc -w --files0-from - | tail -n1"
-alias tasks='find -type f -iname "*.md" -print0 | xargs -0 egrep "\[.\]"'
+
+function search() {
+    query="$1"
+    rg --vimgrep --color ansi "$query" | sk --ansi --print0 | cut -z -d : -f 1-3 | xargs -0 -r code -g
+}
+alias tasks='search "\[ \]|TODO"'
 
 # System management
 alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
