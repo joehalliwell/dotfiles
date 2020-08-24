@@ -35,7 +35,11 @@ alias words="find . -type f -print0 | sort -z | wc -w --files0-from - | tail -n1
 
 function search() {
     query="$1"
-    rg --vimgrep --color ansi "$query" | sk --ansi --print0 | cut -z -d : -f 1-3 | xargs -0 -r code -g
+    if [[ -z "$query" ]]; then
+        sk --ansi -i -c 'rg --color ansi --vimgrep "{}"' --print0 | cut -z -d : -f 1-3 | xargs -0 -r code -g
+    else
+        rg --vimgrep --color ansi "$query" | sk --ansi --print0 | cut -z -d : -f 1-3 | xargs -0 -r code -g
+    fi
 }
 alias tasks='search "\[ \]|TODO"'
 
