@@ -51,7 +51,7 @@ function up() {
 
     if [[ -x $(command -v rustup) ]]; then
         rustup update
-        cargo install cargo-update
+        # cargo install cargo-update
         cargo install-update --all
     else
         echo "Skipping rust update"
