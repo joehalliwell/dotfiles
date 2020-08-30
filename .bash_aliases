@@ -2,9 +2,6 @@
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -29,11 +26,26 @@ alias open="xdg-open"
 alias copy="xclip -selection clipboard"
 alias paste="xclip -selection clipboard -out"
 alias banner="toilet -f mono9 --termwidth"
+alias cl="clear"
 
 # Mini apps
 alias wttr="curl https://wttr.in"
 alias words="find . -type f -print0 | sort -z | wc -w --files0-from - | tail -n1"
 
+function today() {
+    _today="$COMMONPLACE/Journal/$(date +%Y/%m/%d.md)"
+    if [[ ! -f "$_today" ]]; then
+        echo "Creating $_today"
+        mkdir -p "$(dirname $_today)"
+        touch "$_today"
+        echo >> "$_today"
+        date "+# %A, %B %d, %Y" >> "$_today"
+    fi
+    echo >> "$_today"
+    date "+## %H:%M:%S" >> "$_today"
+    echo >> "$_today"
+    code "$_today"
+}
 function search() {
     query="$1"
     if [[ -z "$query" ]]; then
@@ -60,6 +72,6 @@ function up() {
 }
 
 # Extra fasd aliases
-alias o='a -e xdg-open'
 alias co='a -e code'
-_fasd_bash_hook_cmd_complete o
+alias o='a -e xdg-open'
+_fasd_bash_hook_cmd_complete co o

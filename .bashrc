@@ -107,7 +107,5 @@ _setup_command starship init bash
 #_setup_command zoxide init bash
 _setup_command fasd --init auto
 
-alias o='a -e xdg-open'
-_fasd_bash_hook_cmd_complete o
-
 export NLTK_DATA=$HOME/.local/nltk_data
+export COMMONPLACE=$HOME/Dropbox/Commonplace
