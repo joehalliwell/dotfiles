@@ -28,6 +28,7 @@ alias venv="python3 -m venv"
 alias open="xdg-open"
 alias copy="xclip -selection clipboard"
 alias paste="xclip -selection clipboard -out"
+alias banner="toilet -f mono9 --termwidth"
 
 # Mini apps
 alias wttr="curl https://wttr.in"
@@ -57,3 +58,8 @@ function up() {
         echo "Skipping rust update"
     fi
 }
+
+# Extra fasd aliases
+alias o='a -e xdg-open'
+alias co='a -e code'
+_fasd_bash_hook_cmd_complete o

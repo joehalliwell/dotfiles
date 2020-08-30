@@ -63,6 +63,21 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/joe/.local/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/joe/.local/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/joe/.local/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/joe/.local/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 # Set up the path
 function _add_path() {
     path=$1
@@ -87,22 +102,12 @@ _add_path "$HOME/.local/bin"
 _add_path "$HOME/.cargo/bin"
 _add_path "$HOME/.local/opt/flutter/bin"
 _add_path "$HOME/.local/opt/node/bin"
-_setup_command zoxide init bash
+
 _setup_command starship init bash
+#_setup_command zoxide init bash
+_setup_command fasd --init auto
+
+alias o='a -e xdg-open'
+_fasd_bash_hook_cmd_complete o
 
 export NLTK_DATA=$HOME/.local/nltk_data
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/joe/.local/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/joe/.local/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/joe/.local/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/joe/.local/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
