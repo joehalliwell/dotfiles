@@ -41,14 +41,6 @@ fi
 # Set a basic prompt
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -63,23 +55,42 @@ fi
 # Colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
 # Set up the path
-function add_path() {
+function _add_path() {
     path=$1
     if [[ ! -d "$path" ]]; then
-        echo ".bashrc: '$path' not found"
+        echo ".bashrc: Warning! Not adding invalid '$path' to \$PATH"
+        return
     fi
     export PATH="$PATH:$path"
 }
 
-add_path "$HOME/.local/bin"
-add_path "$HOME/.cargo/bin"
-add_path "$HOME/.local/opt/flutter/bin"
-add_path "$HOME/.local/opt/node/bin"
+# Used to run shell integrated setup command
+function _setup_command {
+  cmd=$1
+  if ! command -v $cmd &> /dev/null; then
+    echo ".bashrc: Warning! Not setting up invalid command '$cmd'"
+    return
+  fi
+  eval "$($*)"
+}
+
+_add_path "$HOME/.local/bin"
+_add_path "$HOME/.cargo/bin"
+_add_path "$HOME/.local/opt/flutter/bin"
+_add_path "$HOME/.local/opt/node/bin"
+_setup_command zoxide init bash
+_setup_command starship init bash
 
 export NLTK_DATA=$HOME/.local/nltk_data
-
-eval "$(starship init bash)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -95,4 +106,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
