@@ -1,0 +1,100 @@
+{
+  "workbench.colorTheme": "Ayu Light Bordered",
+  "workbench.iconTheme": "ayu",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.sideBar.location": "left",
+
+  "vsicons.dontShowNewVersionMessage": true,
+  "problems.showCurrentInStatus": true,
+  "dateTime.customFormat": "YYYY-MM-DD HH:mm:ss",
+
+  "window.zoomLevel": 0,
+  "window.menuBarVisibility": "toggle",
+  "window.titleBarStyle": "custom",
+
+  "editor.fontSize": 16,
+  "editor.fontFamily": "'Fantasque Sans Mono', 'Monaco', 'Ubuntu Mono', 'IBM Plex Mono', 'Droid Sans Mono', 'Hack', 'Fira Code'",
+  "editor.rulers": [80, 120],
+  "editor.renderLineHighlight": "line",
+  "editor.minimap.enabled": true,
+  "editor.formatOnSave": true,
+  "editor.smoothScrolling": true,
+  "editor.renderWhitespace": "all",
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+  "editor.multiCursorModifier": "ctrlCmd",
+
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      // Make all comments italic
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic"
+        }
+      }
+    ]
+  },
+
+  "journal.base": "/home/joe/Dropbox/Commonplace/Journal",
+  "journal.tpl-entry": "# ${weekday}, ${localDate}",
+
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.shell.linux": "/bin/bash",
+
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+
+  "python.dataScience.askForKernelRestart": false,
+  "python.dataScience.sendSelectionToInteractiveWindow": true,
+  "python.formatting.provider": "black",
+  "python.showStartPage": false,
+  "python.pythonPath": "/usr/bin/python3.8",
+  "python.languageServer": "Jedi",
+
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "projectManager.git.baseFolders": ["/home/joe/work"],
+
+  "local-history.path": "~/.var/vscode-local-history",
+  "cSpell.language": "en-GB",
+  "cSpell.userWords": [
+    "Giovanni's",
+    "Sriracha",
+    "Coursera",
+    "dropbox",
+    "no",
+    "noötropic",
+    "noötropics",
+    "stramash",
+    "tropic",
+    "tropics"
+  ],
+  "gitlens.advanced.telemetry.enabled": false,
+  "gitlens.codeLens.scopes": ["containers"],
+
+  // Markdown look and feel
+  "markdown.preview.fontSize": 16,
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "files.trimTrailingWhitespace": false
+  },
+  "markdown-header-coloring.textDecoration": "font-size: 1.5em",
+  "markdown-header-coloring.overviewRulerColor": 1,
+  "markdown-header-coloring.colormapConfig": {
+    "colormap": "phase", // See https://github.com/bpostlethwaite/colormap
+    "nshades": 20
+  },
+  "prettier.proseWrap": "always",
+
+  "debug.node.autoAttach": "on"
+}
