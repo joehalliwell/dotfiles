@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Ayu Light Bordered",
+  "workbench.colorTheme": "Noctis Viola",
   "workbench.iconTheme": "ayu",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.sideBar.location": "left",
@@ -68,9 +68,11 @@
   "local-history.path": "~/.var/vscode-local-history",
   "cSpell.language": "en-GB",
   "cSpell.userWords": [
-    "Giovanni's",
-    "Sriracha",
     "Coursera",
+    "Doune",
+    "Giovanni's",
+    "Monzo",
+    "Sriracha",
     "dropbox",
     "no",
     "noötropic",
@@ -94,7 +96,7 @@
     "colormap": "phase", // See https://github.com/bpostlethwaite/colormap
     "nshades": 20
   },
-  "prettier.proseWrap": "always",
+  "prettier.proseWrap": "preserve",
 
   "debug.node.autoAttach": "on"
 }
