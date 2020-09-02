@@ -54,7 +54,7 @@ function search() {
         rg --vimgrep --color ansi "$query" | sk --ansi --print0 | cut -z -d : -f 1-3 | xargs -0 -r code -g
     fi
 }
-alias tasks='search "\[ \]|TODO"'
+alias tasks='search "\[ \]"'
 
 # System management
 alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
