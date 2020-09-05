@@ -38,7 +38,6 @@ function today() {
         echo "Creating $_today"
         mkdir -p "$(dirname $_today)"
         touch "$_today"
-        echo >> "$_today"
         date "+# %A, %B %d, %Y" >> "$_today"
     fi
     echo >> "$_today"
