@@ -1,169 +1,208 @@
-/* Please visit the URL below for more information: */
-/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+/* Designed to be used with the `none` styling. See hints at
+https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 
 @import url("https://fonts.googleapis.com/css2?family=Eczar:wght@400;600;800&family=Gentium+Book+Basic&display=swap");
 
+:root {
+  --main-color: #222;
+  --mark-color: #aaa;
+  --background-color: #fff;
+  --accent-color: #ec005b;
+  --base-size: 20px;
+  --main-font: "Gentium Book Basic", serif;
+  --accent-font: "Eczar", serif;
+  --margin-padding: 10px;
+}
+
+/* Teeny reset */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul,
+dl,
+dd,
+dt {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  box-sizing: inherit;
+  list-style: none;
+}
+
 @media screen {
   .markdown-preview {
-    padding: 2em calc(50% - 450px + 8em) !important;
+    padding: 2em
+      calc(50% - 450px + (8 * var(--base-size) + 2 * var(--margin-padding))) !important;
   }
 }
 
-.markdown-preview.markdown-preview {
-  --accent-color: #0879d6;
-  --accent-color: #495057;
-  --accent-color: #ec005b;
-  --main-color: #222;
-  --mark-color: #999;
-
-  background-color: #eee;
+html,
+body {
+  background-color: var(--background-color);
   color: var(--main-color);
-  font-family: system-ui;
-  font-family: "Gentium Book Basic", serif;
-  font-size: 18px;
-  line-height: 175%;
+  font-family: var(--main-font);
+  font-size: var(--base-size);
+  line-height: 150%;
+}
 
-  p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-  }
+*::before,
+*::after {
+  color: var(--mark-color);
+  font-size: calc(0.8 * var(--base-size));
+  font-family: monospace;
+  font-weight: 800;
+  font-style: normal;
+}
 
-  *::before,
-  *::after {
-    color: var(--mark-color);
-    font-family: sans-serif;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 80%;
-  }
+p {
+  margin-top: var(--base-size);
+}
 
-  a {
+a {
+  color: var(--accent-color);
+  font-weight: bold;
+  text-decoration: underline;
+}
+a:visited {
+  color: var(--accent-color);
+}
+
+abbr {
+  text-decoration-color: var(--mark-color);
+  text-decoration-style: dotted;
+}
+
+strong::before {
+  content: "**";
+}
+strong::after {
+  content: "**";
+  padding-left: 1px;
+}
+
+em::before {
+  content: "*";
+}
+em::after {
+  content: "*";
+  padding-left: 3px;
+}
+
+h1,
+h2 {
+  font-family: var(--accent-font);
+  font-weight: 600;
+}
+
+h1 {
+  font-size: calc(2 * var(--base-size));
+  margin-top: calc(2 * var(--base-size));
+  counter-reset: section;
+}
+h2 {
+  font-size: calc(1.5 * var(--base-size));
+  margin-top: calc(2.5 * var(--base-size));
+  counter-increment: section;
+  counter-reset: subsection;
+}
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--base-size);
+  margin-top: calc(2 * var(--base-size));
+  font-weight: bold;
+  font-family: var(--main-font);
+}
+h3 {
+  counter-increment: subsection;
+}
+
+h1::before,
+h2::before,
+h3::before,
+h4::before {
+  text-align: right;
+  display: inline-block;
+  width: 8em;
+  margin-left: calc(-8em - 2 * var(--margin-padding));
+  margin-right: calc(2 * var(--margin-padding));
+}
+
+h1::before {
+  content: "TITLE";
+}
+h2::before {
+  content: "§" counter(section);
+}
+h3::before {
+  content: "§" counter(section) "." counter(subsection);
+}
+
+blockquote {
+  margin-left: calc(-2 * var(--margin-padding) - 2px);
+  border-left: 2px solid var(--accent-color);
+  background-color: var(--background-color);
+  padding-left: 10px;
+}
+
+hr {
+  margin: calc(2 * var(--base-size) - 1px);
+  background: var(--background-color);
+  border: none;
+  border-bottom: 2px solid #ccc;
+}
+
+ul,
+ol {
+  li::before {
+    content: "X";
     color: var(--accent-color);
-    font-weight: bold;
-    text-decoration: underline;
-  }
-
-  // a::before {
-  //   content: "\202f";
-  // }
-  // a::after {
-  //   content: "\202f";
-  // }
-
-  strong::before {
-    content: "**\202f";
-  }
-  strong::after {
-    content: "\202f**";
-  }
-
-  em::before {
-    content: "*\202f";
-  }
-  em::after {
-    content: "\202f*";
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Eczar", serif;
-    font-weight: 600;
-    padding: 0px;
-    margin: 0px;
-    margin-bottom: 1em;
-    letter-spacing: 0.02em;
-  }
-
-  h1 {
-    font-size: 200%;
-    counter-reset: section;
-  }
-  h2 {
-    font-size: 175%;
-    counter-increment: section;
-    counter-reset: subsection;
-    margin-bottom: 0.5em;
-  }
-  h3 {
-    font-size: 100%;
-    counter-increment: subsection;
-  }
-  h4,
-  h5,
-  h6 {
-    font-size: 16px;
-  }
-
-  h1::before,
-  h2::before,
-  h3::before,
-  h4::before {
-    display: inline-block;
-    width: 60px;
-    margin-left: -70px;
-    margin-right: 10px;
     text-align: right;
-    color: #ccc;
-    font-size: 16px;
-    font-family: sans-serif;
-    font-weight: 600;
+    display: inline-block;
+    width: 8em;
+    margin-left: calc(-8em - 2 * var(--margin-padding));
+    margin-right: calc(2 * var(--margin-padding));
   }
+}
+ul ul,
+ol ol {
+  padding-left: 2em;
+}
+ol {
+  counter-reset: ol;
+}
+ul li::before {
+  content: "\2022";
+  content: "-";
+}
+ol li::before {
+  counter-increment: ol;
+  content: counter(ol) ".";
+}
+li.task-list-item::before {
+  content: "";
+}
 
-  h1::before {
-    content: "TITLE";
-  }
-  h2::before {
-    content: "§" counter(section);
-  }
-  h3::before {
-    content: "§" counter(section) "." counter(subsection);
-  }
-
-  blockquote {
-    margin-left: -12px;
-    border-left: 2px solid var(--accent-color);
-    padding-left: 10px;
-  }
-
-  hr {
-    margin: 1em;
-    background: none;
-    border-bottom: 2px solid #ccc;
-  }
-
-  ul {
-    padding-left: 2em;
-    list-style: none;
-    li:not(.task-list-item)::before {
-      display: inline-block;
-      width: 60px;
-      margin-left: -70px;
-      margin-right: 10px;
-      text-align: right;
-      content: "\2022";
-      font-weight: bold;
-      color: var(--accent-color);
-    }
-  }
-
-  *:not(li) > ul {
-    padding: 0px;
-  }
-
-  dt {
-    counter-reset: definition;
-  }
-  dd {
-    counter-increment: definition;
-  }
-  dd::before {
-    content: counter(definition) ". ";
-  }
+dt {
+  counter-reset: definition;
+  font-weight: bold;
+}
+dd {
+  counter-increment: definition;
+}
+dd::before {
+  content: counter(definition) ":";
+  color: var(--accent-color);
+  text-align: right;
+  display: inline-block;
+  width: 8em;
+  margin-left: calc(-8em - 2 * var(--margin-padding));
+  margin-right: calc(2 * var(--margin-padding));
 }
