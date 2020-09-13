@@ -4,13 +4,16 @@ https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
 @import url("https://fonts.googleapis.com/css2?family=Eczar:wght@400;600;800&family=Gentium+Book+Basic&family=Roboto+Mono:wght@423&display=swap");
 
 :root {
-  --main-color: #222;
-  --mark-color: #aaa;
   --background-color: #fff;
+  --main-color: #222;
   --accent-color: #ec005b;
-  --base-size: 20px;
+  --mark-color: #aaa;
+
   --main-font: "Gentium Book Basic", serif;
-  --accent-font: "Eczar", serif;
+  --title-font: "Eczar", serif;
+  --mark-font-family: "Roboto Mono", monospace;
+
+  --base-size: 20px;
   --margin-padding: 10px;
 }
 
@@ -25,6 +28,7 @@ h6,
 p,
 ol,
 ul,
+li,
 dl,
 dd,
 dt {
@@ -55,7 +59,7 @@ body {
 *::after {
   color: var(--mark-color);
   font-size: calc(0.8 * var(--base-size));
-  font-family: "Roboto Mono";
+  font-family: var(--mark-font-family);
   font-weight: 800;
   font-style: normal;
 }
@@ -78,8 +82,19 @@ abbr {
   text-decoration-style: dotted;
 }
 
+code {
+  font-family: var(--mark-font-family);
+  color: var(--main-color);
+}
+
+code::before,
+code::after {
+  content: "`";
+}
+
 strong::before {
   content: "**";
+  padding-right: 1px;
 }
 strong::after {
   content: "**";
@@ -91,18 +106,19 @@ em::before {
 }
 em::after {
   content: "*";
-  padding-left: 3px;
+  padding-left: 2px;
 }
 
 h1,
 h2 {
-  font-family: var(--accent-font);
+  font-family: var(--title-font);
   font-weight: 600;
+  margin-bottom: var(--base-size);
 }
 
 h1 {
   font-size: calc(2 * var(--base-size));
-  margin-top: calc(2 * var(--base-size));
+  margin-top: calc(2.5 * var(--base-size));
   counter-reset: section;
 }
 h2 {
@@ -116,7 +132,8 @@ h4,
 h5,
 h6 {
   font-size: var(--base-size);
-  margin-top: calc(2 * var(--base-size));
+  margin-top: calc(1 * var(--base-size));
+  margin-bottom: var(--base-size);
   font-weight: bold;
   font-family: var(--main-font);
 }
@@ -193,6 +210,8 @@ li.task-list-item::before {
 dt {
   counter-reset: definition;
   font-weight: bold;
+  font-style: italic;
+  margin-top: var(--base-size);
 }
 dd {
   counter-increment: definition;
