@@ -87,8 +87,8 @@
   // Markdown look and feel
   "markdown.preview.fontSize": 16,
   "[markdown]": {
+    "editor.formatOnSave": false,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "files.trimTrailingWhitespace": false,
     // quickSuggestions true will provide suggestions as you type.
     // If you turn this on and DO NOT want suggestions
     // for non-wiki-link, non-tag words,
@@ -101,7 +101,8 @@
     // Set this to false if you turn on quickSuggestions
     // but don't want suggestions for markdown related snippets
     // as you type:
-    "editor.suggest.showSnippets": false
+    "editor.suggest.showSnippets": true,
+    "files.trimTrailingWhitespace": false
   },
   "markdown.styles": [
     //"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -118,5 +119,6 @@
   "debug.node.autoAttach": "on",
   "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
   "markdown-preview-enhanced.enableTypographer": true,
-  "markdown-preview-enhanced.breakOnSingleNewLine": false
+  "markdown-preview-enhanced.breakOnSingleNewLine": false,
+  "markdown-preview-enhanced.previewTheme": "none.css"
 }
