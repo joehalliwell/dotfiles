@@ -17,28 +17,6 @@ https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
   --margin-padding: 10px;
 }
 
-/* Teeny reset */
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ol,
-ul,
-li,
-dl,
-dd,
-dt {
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
-  box-sizing: inherit;
-  list-style: none;
-}
-
 @media screen {
   .markdown-preview {
     padding: 2em
@@ -46,140 +24,204 @@ dt {
   }
 }
 
-html,
-body {
+html body .markdown-preview {
   background-color: var(--background-color);
   color: var(--main-color);
   font-family: var(--main-font);
   font-size: var(--base-size);
   line-height: 150%;
-}
 
-*::before,
-*::after {
-  color: var(--mark-color);
-  font-size: calc(0.8 * var(--base-size));
-  font-family: var(--mark-font-family);
-  font-weight: 800;
-  font-style: normal;
-}
+  /* Teeny reset */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ol,
+  ul,
+  li,
+  dl,
+  dd,
+  dt {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    box-sizing: inherit;
+    list-style: none;
+  }
 
-p {
-  margin-top: var(--base-size);
-}
+  *::before,
+  *::after {
+    color: var(--mark-color);
+    font-size: calc(0.8 * var(--base-size));
+    font-family: var(--mark-font-family);
+    font-weight: 800;
+    font-style: normal;
+  }
 
-a {
-  color: var(--accent-color);
-  font-weight: bold;
-  text-decoration: underline;
-}
-a:visited {
-  color: var(--accent-color);
-}
+  p,
+  ul,
+  ol {
+    margin-top: var(--base-size);
+  }
 
-abbr {
-  text-decoration-color: var(--mark-color);
-  text-decoration-style: dotted;
-}
+  a {
+    color: var(--accent-color);
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  a:visited {
+    color: var(--accent-color);
+  }
 
-code {
-  font-family: var(--mark-font-family);
-  color: var(--main-color);
-}
+  abbr {
+    text-decoration-color: var(--mark-color);
+    text-decoration-style: dotted;
+  }
 
-code::before,
-code::after {
-  content: "`";
-}
+  code {
+    font-family: var(--mark-font-family);
+    color: var(--main-color);
+  }
 
-strong::before {
-  content: "**";
-  padding-right: 1px;
-}
-strong::after {
-  content: "**";
-  padding-left: 1px;
-}
+  code::before,
+  code::after {
+    content: "`";
+  }
 
-em::before {
-  content: "*";
-}
-em::after {
-  content: "*";
-  padding-left: 2px;
-}
+  strong::before {
+    content: "**";
+    padding-right: 1px;
+  }
+  strong::after {
+    content: "**";
+    padding-left: 1px;
+  }
 
-h1,
-h2 {
-  font-family: var(--title-font);
-  font-weight: 600;
-  margin-bottom: var(--base-size);
-}
+  em::before {
+    content: "*";
+  }
+  em::after {
+    content: "*";
+    padding-left: 2px;
+  }
 
-h1 {
-  font-size: calc(2 * var(--base-size));
-  margin-top: calc(2.5 * var(--base-size));
-  counter-reset: section;
-}
-h2 {
-  font-size: calc(1.5 * var(--base-size));
-  margin-top: calc(2.5 * var(--base-size));
-  counter-increment: section;
-  counter-reset: subsection;
-}
-h3,
-h4,
-h5,
-h6 {
-  font-size: var(--base-size);
-  margin-top: calc(1 * var(--base-size));
-  margin-bottom: var(--base-size);
-  font-weight: bold;
-  font-family: var(--main-font);
-}
-h3 {
-  counter-increment: subsection;
-}
+  h1,
+  h2 {
+    font-family: var(--title-font);
+    font-weight: 600;
+    margin-bottom: var(--base-size);
+  }
 
-h1::before,
-h2::before,
-h3::before,
-h4::before {
-  text-align: right;
-  display: inline-block;
-  width: 8em;
-  margin-left: calc(-8em - 2 * var(--margin-padding));
-  margin-right: calc(2 * var(--margin-padding));
-}
+  h1 {
+    font-size: calc(2 * var(--base-size));
+    margin-top: calc(2.5 * var(--base-size));
+    counter-reset: section;
+  }
+  h2 {
+    font-size: calc(1.5 * var(--base-size));
+    margin-top: calc(2.5 * var(--base-size));
+    counter-increment: section;
+    counter-reset: subsection;
+  }
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: var(--base-size);
+    margin-top: calc(1 * var(--base-size));
+    margin-bottom: var(--base-size);
+    font-weight: bold;
+    font-family: var(--main-font);
+  }
+  h3 {
+    counter-increment: subsection;
+  }
 
-h1::before {
-  content: "TITLE";
-}
-h2::before {
-  content: "§" counter(section);
-}
-h3::before {
-  content: "§" counter(section) "." counter(subsection);
-}
+  h1::before,
+  h2::before,
+  h3::before,
+  h4::before {
+    text-align: right;
+    display: inline-block;
+    width: 8em;
+    margin-left: calc(-8em - 2 * var(--margin-padding));
+    margin-right: calc(2 * var(--margin-padding));
+  }
 
-blockquote {
-  margin-left: calc(-2 * var(--margin-padding) - 2px);
-  border-left: 2px solid var(--accent-color);
-  background-color: var(--background-color);
-  padding-left: 10px;
-}
+  h1::before {
+    content: "TITLE";
+  }
+  h2::before {
+    content: "§" counter(section);
+  }
+  h3::before {
+    content: "§" counter(section) "." counter(subsection);
+  }
 
-hr {
-  margin: calc(2 * var(--base-size) - 1px);
-  background: var(--background-color);
-  border: none;
-  border-bottom: 2px solid #ccc;
-}
+  blockquote {
+    margin-left: calc(-2 * var(--margin-padding) - 2px);
+    border-left: 2px solid var(--accent-color);
+    background-color: var(--background-color);
+    padding-left: 10px;
+  }
 
-ul,
-ol {
-  li::before {
-    content: "X";
+  hr {
+    margin: calc(2 * var(--base-size) - 1px);
+    background: var(--background-color);
+    border: none;
+    border-bottom: 2px solid #ccc;
+  }
+
+  ul,
+  ol {
+    li::before {
+      content: "X";
+      color: var(--accent-color);
+      text-align: right;
+      display: inline-block;
+      width: 8em;
+      margin-left: calc(-8em - 2 * var(--margin-padding));
+      margin-right: calc(2 * var(--margin-padding));
+    }
+  }
+  ul ul,
+  ol ol {
+    padding-left: 2em;
+  }
+  ol {
+    counter-reset: ol;
+  }
+  ul li::before {
+    content: "\25aa";
+  }
+  ul li li::before {
+    content: "\25ab";
+  }
+  ul li li li::before {
+    content: "\25aa";
+  }
+  ol li::before {
+    counter-increment: ol;
+    content: counter(ol) ".";
+  }
+  li.task-list-item::before {
+    content: "";
+  }
+
+  dt {
+    counter-reset: definition;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: var(--base-size);
+  }
+  dd {
+    counter-increment: definition;
+  }
+  dd::before {
+    content: counter(definition) ":";
     color: var(--accent-color);
     text-align: right;
     display: inline-block;
@@ -187,41 +229,4 @@ ol {
     margin-left: calc(-8em - 2 * var(--margin-padding));
     margin-right: calc(2 * var(--margin-padding));
   }
-}
-ul ul,
-ol ol {
-  padding-left: 2em;
-}
-ol {
-  counter-reset: ol;
-}
-ul li::before {
-  content: "\2022";
-  content: "-";
-}
-ol li::before {
-  counter-increment: ol;
-  content: counter(ol) ".";
-}
-li.task-list-item::before {
-  content: "";
-}
-
-dt {
-  counter-reset: definition;
-  font-weight: bold;
-  font-style: italic;
-  margin-top: var(--base-size);
-}
-dd {
-  counter-increment: definition;
-}
-dd::before {
-  content: counter(definition) ":";
-  color: var(--accent-color);
-  text-align: right;
-  display: inline-block;
-  width: 8em;
-  margin-left: calc(-8em - 2 * var(--margin-padding));
-  margin-right: calc(2 * var(--margin-padding));
 }
