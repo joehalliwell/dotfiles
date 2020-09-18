@@ -6,7 +6,7 @@
 
   "vsicons.dontShowNewVersionMessage": true,
   "problems.showCurrentInStatus": true,
-  "dateTime.customFormat": "YYYY-MM-DD HH:mm:ss",
+  "dateTime.customFormat": "YYYY-MM-DD HH:mm",
 
   "window.zoomLevel": 0,
   "window.menuBarVisibility": "toggle",
