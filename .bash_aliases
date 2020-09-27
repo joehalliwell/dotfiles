@@ -54,6 +54,8 @@ function search() {
     fi
 }
 alias tasks='search "\[ \]"'
+alias commonplace="git --git-dir=$COMMONPLACE/.git --work-tree=$COMMONPLACE"
+alias cca="commonplace add --all $COMMONPLACE; commonplace commit"
 
 # System management
 alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
