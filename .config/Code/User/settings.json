@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Noctis Viola",
+  "workbench.colorTheme": "Eva Light Bold",
   "workbench.iconTheme": "ayu",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.sideBar.location": "left",
@@ -48,12 +48,9 @@
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
-
-  "python.dataScience.askForKernelRestart": false,
-  "python.dataScience.sendSelectionToInteractiveWindow": true,
   "python.formatting.provider": "black",
   "python.showStartPage": false,
-  "python.pythonPath": "/usr/bin/python3.8",
+  "python.pythonPath": "/usr/bin/python3",
   "python.languageServer": "Jedi",
 
   "[json]": {
@@ -117,8 +114,11 @@
   "prettier.proseWrap": "preserve",
 
   "debug.node.autoAttach": "on",
-  "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
+  "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": false,
   "markdown-preview-enhanced.enableTypographer": true,
   "markdown-preview-enhanced.breakOnSingleNewLine": false,
-  "markdown-preview-enhanced.previewTheme": "none.css"
+  "markdown-preview-enhanced.previewTheme": "none.css",
+  "jupyter.askForKernelRestart": false,
+  "jupyter.sendSelectionToInteractiveWindow": true,
+  "gitlens.codeLens.enabled": false
 }
