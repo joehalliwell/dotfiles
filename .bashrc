@@ -55,6 +55,12 @@ fi
 # Colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# Set npm -g installation prefix
+export NPM_CONFIG_PREFIX="$HOME/.local/opt/node"
+
+# Preserve MANPATH if you already defined it somewhere in your config.
+# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+export MANPATH="${MANPATH-$(manpath)}:$NPM_CONFIG_PREFIX/share/man"
 
 # Set up the path
 function _add_path() {
@@ -79,14 +85,14 @@ function _setup_command {
 _add_path "$HOME/.local/bin"
 _add_path "$HOME/.cargo/bin"
 _add_path "$HOME/.local/opt/flutter/bin"
-_add_path "$HOME/.local/opt/node/bin"
+_add_path "$NPM_CONFIG_PREFIX/bin"
 
 _setup_command starship init bash
 #_setup_command zoxide init bash
 _setup_command fasd --init auto
 
-export NLTK_DATA=$HOME/.local/nltk_data
-export COMMONPLACE=$HOME/Dropbox/Commonplace
+export NLTK_DATA="$HOME/.local/opt/nltk_data"
+export COMMONPLACE="$HOME/Dropbox/Commonplace"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
