@@ -1,0 +1,25 @@
+# Print a new line at the start of the prompt
+add_newline = true
+
+[character]
+# 🌞 🌛 ♍ 💎 🙏 ䷕  ∴
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+
+[cmd_duration]
+min_time = 1
+
+[time]
+disabled = false
+
+[hostname]
+ssh_only = true
+format = "@[$hostname]($style):"
+
+[directory]
+truncate_to_repo = false
+format = "[$path]($style) "
+
+[username]
+show_always = false
+format = "[$user]($style)"
