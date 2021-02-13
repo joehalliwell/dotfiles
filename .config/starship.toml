@@ -13,10 +13,10 @@ min_time = 1
 disabled = false
 
 [hostname]
-format = " on [$hostname]($style)"
+format = " on [$hostname]($style) in "
 
 [directory]
-format = " in [$path]($style)[$read_only]($read_only_style) "
+format = "[$path]($style)[$read_only]($read_only_style) "
 
 [username]
 format = "[$user]($style)"
