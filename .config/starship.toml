@@ -11,15 +11,3 @@ min_time = 1
 
 [time]
 disabled = false
-
-[hostname]
-ssh_only = true
-format = "@[$hostname]($style):"
-
-[directory]
-truncate_to_repo = false
-format = "[$path]($style) "
-
-[username]
-show_always = false
-format = "[$user]($style)"
