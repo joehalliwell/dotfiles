@@ -8,9 +8,10 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+FANCY_LS='exa --classify'
+alias l="$FANCY_LS"
+alias ll="$FANCY_LS --all --group --long"
+alias la="$FANCY_LS --all "
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -53,7 +54,7 @@ function search() {
         rg --vimgrep --color ansi "$query" | sk --ansi --print0 | cut -z -d : -f 1-3 | xargs -0 -r code -g
     fi
 }
-alias tasks='search "\[ \]"'
+alias tasks="pushd $COMMONPLACE; search '\[ \]'; popd"
 alias commonplace="git --git-dir=$COMMONPLACE/.git --work-tree=$COMMONPLACE"
 alias cca="commonplace add --all $COMMONPLACE; commonplace commit -m 'Routine updates'"
 
