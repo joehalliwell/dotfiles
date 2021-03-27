@@ -5,13 +5,13 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-fi
 
-# some more ls aliases
-FANCY_LS='exa --classify'
-alias l="$FANCY_LS"
-alias ll="$FANCY_LS --all --group --long"
-alias la="$FANCY_LS --all "
+    # some more ls aliases
+    FANCY_LS='exa --classify'
+    alias l="$FANCY_LS"
+    alias ll="$FANCY_LS --all --group --long"
+    alias la="$FANCY_LS --all "
+fi
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
