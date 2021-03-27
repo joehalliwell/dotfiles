@@ -50,9 +50,9 @@
 # Built-in themes.  Valid values are "default", "default-light", "gruvbox", "gruvbox-light"
 #color = "default"
 # Show memory values in the processes widget as values by default
-#mem_as_value = false
+mem_as_value = true
 # Show tree mode by default in the processes widget.
-#tree = false
+#tree = true
 
 # These are all the components that support custom theming.  Note that colour support
 # will depend on terminal support.
@@ -123,25 +123,29 @@
 #    default=true
 
 [[row]]
-  ratio = 60
+  ratio = 70
   [[row.child]]
     type="proc"
     default=true
 [[row]]
-  ratio = 40
+  ratio = 30
   [[row.child]]
      type="mem"
   [[row.child]]
      type="cpu"
-
+[[row]]
+  ratio = 10
+  [[row.child]]
+     type="disk"
 
 
 # Filters - you can hide specific temperature and disks using filters.  This is admittedly a bit
 # hard to use as of now, and there is a planned interface for managing this in the future:
-#[disk_filter]
-#is_list_ignored = false
-#list = ["/dev/sda\\d+", "/dev/nvme0n1p2"]
-#regex = true
+
+[disk_filter]
+is_list_ignored = true
+list = ["/dev/loop\\d+"]
+regex = true
 #case_sensitive = false
 
 #[temp_filter]
