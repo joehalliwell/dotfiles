@@ -33,6 +33,7 @@ alias cl="clear"
 alias wttr="curl https://wttr.in"
 alias words="find . -type f -print0 | sort -z | wc -w --files0-from - | tail -n1"
 
+# Commonplace (notes/journal functions)
 function today() {
     _today="$COMMONPLACE/Journal/$(date +%Y/%m/%d.md)"
     if [[ ! -f "$_today" ]]; then
@@ -57,6 +58,20 @@ function search() {
 alias tasks="pushd $COMMONPLACE; search '\[ \]'; popd"
 alias commonplace="git --git-dir=$COMMONPLACE/.git --work-tree=$COMMONPLACE"
 alias cca="commonplace add --all $COMMONPLACE; commonplace commit -m 'Routine updates'"
+
+# Scratch Jupyter Lab for random hacking
+function sandbox() {
+    sandbox_env="$HOME/.venv/sandbox"
+    if [ ! -d  "$sandbox_env" ]; then
+        echo "No sandbox virtual environment in $sandbox_env!";
+        return
+    fi
+    pushd "$HOME/Dropbox/Notebooks"
+    source "$sandbox_env/bin/activate"
+    jupyter lab
+    source "$sandbox_env/bin/deactivate"
+    popd
+}
 
 # System management
 alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
