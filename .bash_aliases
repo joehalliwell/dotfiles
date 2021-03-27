@@ -1,20 +1,26 @@
-# enable color support of ls and also add handy aliases
+# enable color support for grep add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+fi
 
-    # some more ls aliases
+# Enable exa, if available
+if command -v exa &> /dev/null; then
     FANCY_LS='exa --classify'
     alias l="$FANCY_LS"
+    alias ls="$FANCY_LS"
     alias ll="$FANCY_LS --all --group --long"
     alias la="$FANCY_LS --all "
 fi
 
-# Use bat instead of cat, if available
-if command -v bat &> /dev/null; then alias cat=bat; fi
+# Enable bat, if available
+if command -v bat &> /dev/null; then
+    alias cat='bat'
+    export BAT_THEME="TwoDark"
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -78,6 +84,7 @@ function sandbox() {
 
 # System management
 alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
+
 function up() {
     sudo apt update
     sudo apt -y full-upgrade
