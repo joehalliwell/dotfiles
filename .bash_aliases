@@ -90,6 +90,17 @@ function up() {
         echo "Skipping rust update"
     fi
 }
+## Update a directory of git checkouts
+function dup() {
+    for d in *; do
+        if [[ -d $d && -d $d/.git ]]; then
+            banner $d
+            pushd $d
+            git pull --rebase
+            popd
+        fi
+    done
+}
 
 # Extra fasd aliases
 alias co='a -e code'
