@@ -93,7 +93,7 @@ _setup_command starship init bash
 _setup_command fasd --init auto
 
 export NLTK_DATA="$HOME/.local/opt/nltk_data"
-export COMMONPLACE="$HOME/Dropbox/Commonplace"
+export COMMONPLACE="$HOME/work/commonplace-private"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
