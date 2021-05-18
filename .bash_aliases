@@ -77,7 +77,7 @@ function sandbox() {
     fi
     pushd "$HOME/Dropbox/Notebooks"
     source "$sandbox_env/bin/activate"
-    jupyter lab
+    jupyter lab --ip 0.0.0.0
     deactivate
     popd
 }
