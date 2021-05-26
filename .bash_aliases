@@ -69,17 +69,23 @@ alias commonplace="git --git-dir=$COMMONPLACE/.git --work-tree=$COMMONPLACE"
 alias cca="commonplace add --all $COMMONPLACE; commonplace commit -m 'Routine updates'"
 
 # Scratch Jupyter Lab for random hacking
+# Deps: ipykernel jupyter ipython
 function sandbox() {
     sandbox_env="$HOME/.venv/sandbox"
+    sandbox_dir="$HOME/Dropbox/Notebooks"
+
     if [ ! -d  "$sandbox_env" ]; then
         echo "No sandbox virtual environment in $sandbox_env!";
         return
     fi
-    pushd "$HOME/Dropbox/Notebooks"
+    if [ ! -d "$sandbox_dir" ]; then
+        echo "No sandbox dir $sandbox_dir!";
+        return
+    fi
     source "$sandbox_env/bin/activate"
-    jupyter lab --ip 0.0.0.0
+    python3 -m ipykernel install --user --name sandbox
+    jupyter lab --ip 0.0.0.0 --notebook-dir "$sandbox_dir"
     deactivate
-    popd
 }
 
 # System management
