@@ -67,6 +67,7 @@ function search() {
 alias tasks="pushd $COMMONPLACE; search '\[ \]'; popd"
 alias commonplace="git --git-dir=$COMMONPLACE/.git --work-tree=$COMMONPLACE"
 alias cca="commonplace add --all $COMMONPLACE; commonplace commit -m 'Routine updates'"
+alias ccs="cca; commonplace pull --rebase; commonplace push"
 
 # Scratch Jupyter Lab for random hacking
 # Deps: ipykernel jupyter ipython
