@@ -86,17 +86,35 @@ function _setup_command {
   eval "$($*)"
 }
 
+function _setup_script {
+  script=$1
+  if [ ! -f "$script" ]; then
+    echo ".bashrc: Warning! Not sourcing invalid script '$script'"
+    return
+  fi
+  source "$script"
+}
+
 _add_path "$HOME/.local/bin"
 _add_path "$HOME/.cargo/bin"
 _add_path "$HOME/.local/opt/flutter/bin"
 _add_path "$NPM_CONFIG_PREFIX/bin"
 
-_setup_command starship init bash
-#_setup_command zoxide init bash
-_setup_command fasd --init auto
+# Virtualenvwrapper setup
+export WORKON_HOME="$HOME/.venv"
+export PROJECT_HOME="$HOME/work"
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV="$HOME/.local/bin/virtualenv"
 
 export NLTK_DATA="$HOME/.local/opt/nltk_data"
 export COMMONPLACE="$HOME/work/commonplace-private"
+
+_setup_command starship init bash
+#_setup_command zoxide init bash
+_setup_command fasd --init auto
+_setup_script "$HOME/.local/bin/virtualenvwrapper.sh"
+_setup_script "$HOME/.config/broot/launcher/bash/br"
+
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
