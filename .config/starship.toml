@@ -1,22 +1,100 @@
 # Print a new line at the start of the prompt
-add_newline = true
+# add_newline = true
 
 [character]
 # 🌞 🌛 ♍ 💎 🙏 ䷕  ∴
-success_symbol = "[➜](bold green) "
-error_symbol = "[✗](bold red) "
+#success_symbol = "[➜](bold green) "
+#error_symbol = "[✗](bold red) "
+success_symbol = "[](bold green) "
+
+[jobs]
+threshold = 1
+disabled = true
 
 [cmd_duration]
 min_time = 1
 
 [time]
 disabled = false
+format = " $time "
 
 [hostname]
 format = " on [$hostname]($style) in "
 
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "
+read_only = " "
 
 [username]
 format = "[$user]($style)"
+
+[aws]
+symbol = "  "
+disabled = true
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[package]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[shlvl]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "
+
