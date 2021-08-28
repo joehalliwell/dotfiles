@@ -66,6 +66,9 @@ export NPM_CONFIG_PREFIX="$HOME/.local/opt/node"
 # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
 export MANPATH="${MANPATH-$(manpath)}:$NPM_CONFIG_PREFIX/share/man"
 
+# Disable annoying attempts to create a keyring for pip
+export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+
 # Set up the path
 function _add_path() {
     path=$1
