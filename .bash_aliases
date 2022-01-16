@@ -119,4 +119,4 @@ function dup() {
 # Extra fasd aliases
 alias co='a -e code'
 alias o='a -e xdg-open'
-_fasd_bash_hook_cmd_complete co o
+if [[ $(type -t _fasd_bask_hook_cmd_complete) == function ]]; then _fasd_bash_hook_cmd_complete co o; fi

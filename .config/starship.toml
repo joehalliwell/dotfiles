@@ -3,13 +3,15 @@
 
 [character]
 # 🌞 🌛 ♍ 💎 🙏 ䷕  ∴
-#success_symbol = "[➜](bold green) "
-#error_symbol = "[✗](bold red) "
+error_symbol = "[](bold red) "
 success_symbol = "[](bold green) "
 
+[status]
+disabled = false
+format = "[$symbol $status]($style) "
+
 [jobs]
-threshold = 1
-disabled = true
+disabled = false
 
 [cmd_duration]
 min_time = 1

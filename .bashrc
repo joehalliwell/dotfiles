@@ -112,12 +112,13 @@ export VIRTUALENVWRAPPER_VIRTUALENV="$HOME/.local/bin/virtualenv"
 export NLTK_DATA="$HOME/.local/opt/nltk_data"
 export COMMONPLACE="$HOME/work/commonplace-private"
 
-_setup_command starship init bash
 #_setup_command zoxide init bash
 _setup_command fasd --init auto
 _setup_script "$HOME/.local/bin/virtualenvwrapper.sh"
 _setup_script "$HOME/.config/broot/launcher/bash/br"
 
+# Run this last so that it can take other prompt hacks into account
+_setup_command starship init bash
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
