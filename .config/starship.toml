@@ -15,10 +15,12 @@ disabled = false
 
 [cmd_duration]
 min_time = 1
+style = ""
 
 [time]
 disabled = false
-format = " $time "
+format = "[ $time]($style) "
+style = ""
 
 [hostname]
 format = " on [$hostname]($style) in "
@@ -26,6 +28,7 @@ format = " on [$hostname]($style) in "
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "
 read_only = " "
+style = "bright-cyan"
 
 [username]
 format = "[$user]($style)"
@@ -51,6 +54,10 @@ symbol = " "
 
 [git_branch]
 symbol = " "
+style = "bright-purple"
+
+[git_status]
+style = "red"
 
 [golang]
 symbol = " "
@@ -75,6 +82,7 @@ symbol = " "
 
 [package]
 symbol = " "
+style = "208"
 
 [perl]
 symbol = " "
@@ -84,6 +92,7 @@ symbol = " "
 
 [python]
 symbol = " "
+style = "yellow"
 
 [ruby]
 symbol = " "
@@ -99,4 +108,3 @@ symbol = " "
 
 [swift]
 symbol = "ﯣ "
-
