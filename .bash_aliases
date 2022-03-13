@@ -38,6 +38,14 @@ alias paste="xclip -selection clipboard -out"
 alias banner="toilet -f mono9 --termwidth"
 alias cl="clear"
 
+function gnome_font() {
+    font="$1"
+    gsettings set org.gnome.desktop.interface document-font-name "$font"
+    gsettings set org.gnome.desktop.interface font-name "$font"
+    gsettings set org.gnome.desktop.wm.preferences titlebar-font "$font"
+}
+
+
 # Mini apps
 alias wttr="curl https://wttr.in"
 alias words="find . -type f -print0 | sort -z | wc -w --files0-from - | tail -n1"

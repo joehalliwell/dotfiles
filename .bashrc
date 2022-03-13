@@ -114,7 +114,7 @@ export COMMONPLACE="$HOME/work/commonplace-private"
 
 #_setup_command zoxide init bash
 _setup_command fasd --init auto
-_setup_script "$HOME/.local/bin/virtualenvwrapper.sh"
+#_setup_script "$HOME/.local/bin/virtualenvwrapper.sh"
 _setup_script "$HOME/.config/broot/launcher/bash/br"
 
 # Run this last so that it can take other prompt hacks into account
