@@ -1,0 +1,12 @@
+[Unit]
+Description=Jupyter Notebook
+
+[Service]
+Type=simple
+PIDFile=/run/jupyter.pid
+ExecStart=/home/joe/.local/bin/jupyter lab --notebook-dir=/home/joe/Dropbox/Notebooks --no-browser --ip 0.0.0.0
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target
