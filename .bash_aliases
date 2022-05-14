@@ -111,6 +111,13 @@ function up() {
     else
         echo "Skipping rust update"
     fi
+
+    if [[ -x $(command -v pipx) ]]; then
+        pipx upgrade-all
+    else
+        echo "Skipping pipx update"
+    fi
+
 }
 ## Update a directory of git checkouts
 function dup() {
