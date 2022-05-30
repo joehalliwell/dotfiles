@@ -31,6 +31,7 @@ read_only = " "
 style = "bright-cyan"
 
 [username]
+format = "[$user]($style) on "
 show_always = true
 
 [aws]
