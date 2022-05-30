@@ -23,7 +23,7 @@ format = "[ $time]($style) "
 style = ""
 
 [hostname]
-format = " on [$hostname]($style) in "
+ssh_only = false
 
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "
@@ -31,7 +31,7 @@ read_only = " "
 style = "bright-cyan"
 
 [username]
-format = "[$user]($style)"
+show_always = true
 
 [aws]
 symbol = "  "
@@ -108,3 +108,5 @@ symbol = " "
 
 [swift]
 symbol = "ﯣ "
+
+
