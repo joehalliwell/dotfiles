@@ -104,6 +104,12 @@ function up() {
     sudo apt update
     sudo apt -y full-upgrade
 
+    if [[ -x $(command -v flatpak) ]]; then
+        flatpak update
+    else
+        echo "Skipping flatpak update"
+    fi
+
     if [[ -x $(command -v rustup) ]]; then
         rustup update
         # cargo install cargo-update
