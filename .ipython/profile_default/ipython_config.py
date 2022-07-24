@@ -90,7 +90,7 @@ c.InteractiveShellApp.extensions = ['autoreload']
 #  matplotlib backend and loop integration.
 #  Choices: any of ['auto', 'agg', 'gtk', 'gtk3', 'inline', 'ipympl', 'nbagg', 'notebook', 'osx', 'pdf', 'ps', 'qt', 'qt4', 'qt5', 'svg', 'tk', 'widget', 'wx'] (case-insensitive) or None
 #  Default: None
-c.InteractiveShellApp.pylab = 'auto'
+# c.InteractiveShellApp.pylab = 'auto'
 
 ## If true, IPython will populate the user namespace with numpy, pylab, etc. and
 #  an ``import *`` is done from numpy and pylab, when using pylab mode.
