@@ -105,6 +105,7 @@ function up() {
     sudo apt -y full-upgrade
 
     if [[ -x $(command -v flatpak) ]]; then
+        flatpak uninstall --unused
         flatpak --noninteractive update
     else
         echo "Skipping flatpak update"
