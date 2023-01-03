@@ -37,7 +37,6 @@ alias copy="xclip -selection clipboard"
 alias paste="xclip -selection clipboard -out"
 alias banner="toilet -f mono9 --termwidth"
 alias cl="clear"
-
 function gnome_font() {
     font="$1"
     gsettings set org.gnome.desktop.interface document-font-name "$font"
@@ -50,8 +49,24 @@ function gnome_font() {
 alias wttr="curl https://wttr.in"
 alias words="find . -type f -print0 | sort -z | wc -w --files0-from - | tail -n1"
 
-# Commonplace (notes/journal functions)
+# Notes
+alias commonplace="git --git-dir=$COMMONPLACE/.git --work-tree=$COMMONPLACE"
+alias cca="commonplace add --all $COMMONPLACE; commonplace commit -m 'Routine updates'"
+alias ccs="cca; commonplace pull --rebase; commonplace push"
+alias tasks="pushd $COMMONPLACE; search '\[ \]'; popd"
+
+# System management
+alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
+
+# Extra fasd aliases
+alias co='a -e code'
+alias o='a -e xdg-open'
+if [[ $(type -t _fasd_bask_hook_cmd_complete) == function ]]; then _fasd_bash_hook_cmd_complete co o; fi
+
+
 function today() {
+    # Create an commonplace journal entry for today and open it
+
     _today="$COMMONPLACE/Journal/$(date +%Y/%m/%d.md)"
     if [[ ! -f "$_today" ]]; then
         echo "Creating $_today"
@@ -64,7 +79,10 @@ function today() {
     echo >> "$_today"
     code "$_today"
 }
+
 function search() {
+    # Interactive search
+
     query="$1"
     if [[ -z "$query" ]]; then
         sk --ansi -i -c 'rg --color ansi --vimgrep "{}"' --print0 | cut -z -d : -f 1-3 | xargs -0 -r code -g
@@ -72,14 +90,11 @@ function search() {
         rg --vimgrep --color ansi "$query" | sk --ansi --print0 | cut -z -d : -f 1-3 | xargs -0 -r code -g
     fi
 }
-alias tasks="pushd $COMMONPLACE; search '\[ \]'; popd"
-alias commonplace="git --git-dir=$COMMONPLACE/.git --work-tree=$COMMONPLACE"
-alias cca="commonplace add --all $COMMONPLACE; commonplace commit -m 'Routine updates'"
-alias ccs="cca; commonplace pull --rebase; commonplace push"
 
-# Scratch Jupyter Lab for random hacking
-# Deps: ipykernel jupyter ipython
 function sandbox() {
+    # Scratch Jupyter Lab for random hacking
+    # Deps: ipykernel jupyter ipython
+
     sandbox_env="$HOME/.venv/sandbox"
     sandbox_dir="$HOME/Dropbox/Notebooks"
 
@@ -97,10 +112,9 @@ function sandbox() {
     deactivate
 }
 
-# System management
-alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
-
 function up() {
+    # Update everything
+
     sudo apt update
     sudo apt -y full-upgrade
 
@@ -126,8 +140,10 @@ function up() {
     fi
 
 }
-## Update a directory of git checkouts
+
 function dup() {
+    # Update a directory of git checkouts
+
     for d in *; do
         if [[ -d $d && -d $d/.git ]]; then
             banner $d
@@ -137,8 +153,3 @@ function dup() {
         fi
     done
 }
-
-# Extra fasd aliases
-alias co='a -e code'
-alias o='a -e xdg-open'
-if [[ $(type -t _fasd_bask_hook_cmd_complete) == function ]]; then _fasd_bash_hook_cmd_complete co o; fi
