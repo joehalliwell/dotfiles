@@ -115,10 +115,12 @@ function sandbox() {
 function up() {
     # Update everything
 
+    banner apt
     sudo apt update
     sudo apt -y full-upgrade
 
     if [[ -x $(command -v flatpak) ]]; then
+        banner flatpak
         flatpak uninstall --unused
         flatpak --noninteractive update
     else
@@ -126,6 +128,7 @@ function up() {
     fi
 
     if [[ -x $(command -v rustup) ]]; then
+        banner cargo
         rustup update
         # cargo install cargo-update
         cargo install-update --all
@@ -134,6 +137,8 @@ function up() {
     fi
 
     if [[ -x $(command -v pipx) ]]; then
+        banner pipx
+        echo Installed: $(pipx list | grep package | awk '{print $2}')
         pipx upgrade-all
     else
         echo "Skipping pipx update"
