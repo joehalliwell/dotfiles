@@ -1,0 +1,43 @@
+#!/bin/env python
+
+from pathlib import Path
+import click
+
+import hashlib
+import os
+
+
+def checksum(f: Path):
+    hash = hashlib.md5()
+    with open(f, "rb") as fp:
+        while chunk := fp.read(8192):
+            hash.update(chunk)
+    return hash.hexdigest()
+
+
+def index(root: Path):
+    result = {}
+    for (root, subdirs, files) in os.walk(root):
+        for f in files:
+            path = Path(root) / f
+            md5 = checksum(path)
+            if md5 in result:
+                print(f"Duplicate: {path} of {result[md5]}")
+            else:
+                result[md5] = path
+    return result
+
+
+@click.command()
+@click.argument("candidates", type=click.Path(file_okay=False))
+@click.argument("archive", type=click.Path(file_okay=False))
+def main(candidates: Path, archive: Path):
+    candidate_index = index(candidates)
+    archive_index = index(archive)
+
+    for c in candidate_index:
+        print(f"{candidate_index[c]} -> {archive_index.get(c, 'MISSING')}")
+
+
+if __name__ == "__main__":
+    main()
