@@ -37,7 +37,7 @@ alias copy="xclip -selection clipboard"
 alias paste="xclip -selection clipboard -out"
 alias banner="toilet -f mono9 --termwidth"
 alias cl="clear"
-function gnome_font() {
+function gnome-font() {
     font="$1"
     gsettings set org.gnome.desktop.interface document-font-name "$font"
     gsettings set org.gnome.desktop.interface font-name "$font"
@@ -45,6 +45,9 @@ function gnome_font() {
 }
 alias gradience-cli="flatpak run --command=gradience-cli com.github.GradienceTeam.Gradience"
 
+function git-ignore() {
+    curl -sL "https://www.toptal.com/developers/gitignore/api/$@"
+}
 
 # Mini apps
 alias wttr="curl https://wttr.in"
