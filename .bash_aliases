@@ -43,6 +43,7 @@ function gnome_font() {
     gsettings set org.gnome.desktop.interface font-name "$font"
     gsettings set org.gnome.desktop.wm.preferences titlebar-font "$font"
 }
+alias gradience-cli="flatpak run --command=gradience-cli com.github.GradienceTeam.Gradience"
 
 
 # Mini apps
