@@ -1,0 +1,33 @@
+#!/bin/bash
+### Update everything
+
+set -e
+
+banner apt
+sudo apt update
+sudo apt -y full-upgrade
+
+if [[ -x $(command -v flatpak) ]]; then
+    banner flatpak
+    flatpak uninstall --unused
+    flatpak --noninteractive update
+else
+    echo "Skipping flatpak update"
+fi
+
+if [[ -x $(command -v rustup) ]]; then
+    banner cargo
+    rustup update
+    # cargo install cargo-update
+    cargo install-update --all
+else
+    echo "Skipping rust update"
+fi
+
+if [[ -x $(command -v pipx) ]]; then
+    banner pipx
+    echo Installed: $(pipx list | grep package | awk '{print $2}')
+    pipx upgrade-all
+else
+    echo "Skipping pipx update"
+fi

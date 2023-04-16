@@ -67,7 +67,6 @@ alias co='a -e code'
 alias o='a -e xdg-open'
 if [[ $(type -t _fasd_bask_hook_cmd_complete) == function ]]; then _fasd_bash_hook_cmd_complete co o; fi
 
-
 function today() {
     # Create an commonplace journal entry for today and open it
 
@@ -114,51 +113,4 @@ function sandbox() {
     python3 -m ipykernel install --user --name sandbox
     jupyter lab --ip 0.0.0.0 --notebook-dir "$sandbox_dir"
     deactivate
-}
-
-function up() {
-    # Update everything
-
-    banner apt
-    sudo apt update
-    sudo apt -y full-upgrade
-
-    if [[ -x $(command -v flatpak) ]]; then
-        banner flatpak
-        flatpak uninstall --unused
-        flatpak --noninteractive update
-    else
-        echo "Skipping flatpak update"
-    fi
-
-    if [[ -x $(command -v rustup) ]]; then
-        banner cargo
-        rustup update
-        # cargo install cargo-update
-        cargo install-update --all
-    else
-        echo "Skipping rust update"
-    fi
-
-    if [[ -x $(command -v pipx) ]]; then
-        banner pipx
-        echo Installed: $(pipx list | grep package | awk '{print $2}')
-        pipx upgrade-all
-    else
-        echo "Skipping pipx update"
-    fi
-
-}
-
-function dup() {
-    # Update a directory of git checkouts
-
-    for d in *; do
-        if [[ -d $d && -d $d/.git ]]; then
-            banner $d
-            pushd $d
-            git pull --rebase
-            popd
-        fi
-    done
 }

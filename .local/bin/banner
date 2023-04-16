@@ -1,0 +1,13 @@
+#!/bin/bash
+### Display a banner -- ideally using toilet
+
+set -e
+
+if [[ -x $(command -v toilet) ]]; then
+    toilet -f mono9 --termwidth "$@"
+else
+    line=$(echo "$@" | sed "s/./=/g")
+    echo "$line"
+    echo "$@"
+    echo "$line"
+fi

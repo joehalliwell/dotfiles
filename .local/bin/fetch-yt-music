@@ -1,10 +1,11 @@
 #!/bin/bash
-
 ### Script for downloading albums from Youtube Music ##########
 ### Usage: ./yt-music-album-download.sh <youtube music url> ###
 
 # Modified from https://github.com/jordandalley/yt-dlp-scripts to:
 # - Write to standard location
+
+set -e
 
 base_dir="$HOME/Music"
 if [ ! -d "$base_dir" ]; then

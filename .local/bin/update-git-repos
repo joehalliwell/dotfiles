@@ -1,0 +1,13 @@
+#!/bin/bash
+### Update a directory of git checkouts
+
+set -e
+
+for d in *; do
+    if [[ -d $d && -d $d/.git ]]; then
+        banner $d
+        pushd $d
+        git pull --rebase
+        popd
+    fi
+done
