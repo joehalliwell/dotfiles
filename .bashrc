@@ -100,7 +100,6 @@ function _setup_script {
 
 _add_path "$HOME/.local/bin"
 _add_path "$HOME/.cargo/bin"
-_add_path "$HOME/.local/opt/flutter/bin"
 _add_path "$NPM_CONFIG_PREFIX/bin"
 
 # Virtualenvwrapper setup
