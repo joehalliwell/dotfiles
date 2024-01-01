@@ -131,6 +131,8 @@ _add_path "$PYENV_ROOT/bin"
 ################################################################################
 
 _setup_command pyenv init -
+_setup_command pyenv virtualenv-init -
+
 #_setup_command zoxide init bash
 _setup_command fasd --init auto
 
