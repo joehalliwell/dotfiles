@@ -64,7 +64,7 @@ fi
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 export LESS='--quit-if-one-screen --ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
 
-# Colored GCC warnings and errors
+# Coloured GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Disable annoying attempts to create a keyring for pip
@@ -74,7 +74,7 @@ export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 # Paths
 ################################################################################
 
-# Set up the path
+# Add an element to PATH
 function _add_path() {
     path=$1
     if [[ ! -d "$path" ]]; then
@@ -84,7 +84,7 @@ function _add_path() {
     export PATH="$PATH:$path"
 }
 
-# Used to run shell integrated setup command
+# Run an eval-based setup command
 function _setup_command {
   cmd=$1
   if ! command -v $cmd &> /dev/null; then
@@ -94,6 +94,7 @@ function _setup_command {
   eval "$($*)"
 }
 
+# Run a script-based setup command
 function _setup_script {
   script=$1
   if [ ! -f "$script" ]; then
