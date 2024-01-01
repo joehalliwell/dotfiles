@@ -8,6 +8,10 @@ case $- in
       *) return;;
 esac
 
+################################################################################
+# Bash history and other options
+################################################################################
+
 # Don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -33,10 +37,6 @@ shopt -s globstar
 # Disable terminal bell
 bind "set bell-style visible"
 
-# Make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-export LESS='--quit-if-one-screen --ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
-
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -56,18 +56,23 @@ if ! shopt -oq posix; then
   fi
 fi
 
+################################################################################
+# Utility configuration
+################################################################################
+
+# Make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+export LESS='--quit-if-one-screen --ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
+
 # Colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# Set npm -g installation prefix
-export NPM_CONFIG_PREFIX="$HOME/.local/opt/node"
-
-# Preserve MANPATH if you already defined it somewhere in your config.
-# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
-export MANPATH="${MANPATH-$(manpath)}:$NPM_CONFIG_PREFIX/share/man"
-
 # Disable annoying attempts to create a keyring for pip
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+
+################################################################################
+# Paths
+################################################################################
 
 # Set up the path
 function _add_path() {
@@ -98,9 +103,15 @@ function _setup_script {
   source "$script"
 }
 
-_add_path "$HOME/.local/bin"
-_add_path "$HOME/.cargo/bin"
-_add_path "$NPM_CONFIG_PREFIX/bin"
+# Preserve MANPATH if you already defined it somewhere in your config.
+# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+export MANPATH="${MANPATH-$(manpath)}:$NPM_CONFIG_PREFIX/share/man"
+
+# Set npm -g installation prefix
+export NPM_CONFIG_PREFIX="$HOME/.local/opt/node"
+export PYENV_ROOT="$HOME/.pyenv"
+export NLTK_DATA="$HOME/.local/opt/nltk_data"
+export COMMONPLACE="$HOME/work/commonplace-private"
 
 # Virtualenvwrapper setup
 export WORKON_HOME="$HOME/.venv"
@@ -108,11 +119,20 @@ export PROJECT_HOME="$HOME/work"
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV="$HOME/.local/bin/virtualenv"
 
-export NLTK_DATA="$HOME/.local/opt/nltk_data"
-export COMMONPLACE="$HOME/work/commonplace-private"
+_add_path "$HOME/.local/bin"
+_add_path "$HOME/.cargo/bin"
+_add_path "$HOME/.local/opt/flutter/bin"
+_add_path "$NPM_CONFIG_PREFIX/bin"
+_add_path "$PYENV_ROOT/bin"
 
+################################################################################
+# Setup commands/scripts
+################################################################################
+
+_setup_command pyenv init -
 #_setup_command zoxide init bash
 _setup_command fasd --init auto
+
 #_setup_script "$HOME/.local/bin/virtualenvwrapper.sh"
 _setup_script "$HOME/.config/broot/launcher/bash/br"
 

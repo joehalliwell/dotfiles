@@ -10,7 +10,7 @@ sudo apt -y full-upgrade
 if [[ -x $(command -v flatpak) ]]; then
     banner flatpak
     flatpak uninstall --unused
-    flatpak --noninteractive update
+    flatpak --assumeyes update
 else
     echo "Skipping flatpak update"
 fi
