@@ -9,8 +9,8 @@ ExecStart= \
   /usr/bin/rclone mount \
     --verbose \
     --fast-list \
-    --buffer-size 64M \
-    --vfs-cache-mode writes \
+    --buffer-size 1G \
+    --vfs-cache-mode full \
     --vfs-cache-max-size 200M \
     %i: %h/Cloud/%i
 ExecStop=/usr/bin/fusermount -u %h/Cloud/%i
