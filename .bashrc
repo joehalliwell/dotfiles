@@ -101,6 +101,7 @@ function _setup_script {
     echo ".bashrc: Warning! Not sourcing invalid script '$script'"
     return
   fi
+  shift
   source "$script"
 }
 
@@ -130,14 +131,15 @@ _add_path "$PYENV_ROOT/bin"
 # Setup commands/scripts
 ################################################################################
 
-_setup_command pyenv init -
-_setup_command pyenv virtualenv-init -
-
-#_setup_command zoxide init bash
-_setup_command fasd --init auto
-
+_setup_script "$HOME/.local/share/blesh/ble.sh"
 #_setup_script "$HOME/.local/bin/virtualenvwrapper.sh"
 _setup_script "$HOME/.config/broot/launcher/bash/br"
+
+_setup_command pyenv init -
+_setup_command pyenv virtualenv-init -
+#_setup_command zoxide init bash
+_setup_command fasd --init auto
+_setup_command atuin init bash
 
 # Run this last so that it can take other prompt hacks into account
 _setup_command starship init bash
