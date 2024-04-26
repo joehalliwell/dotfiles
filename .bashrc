@@ -124,8 +124,8 @@ export VIRTUALENVWRAPPER_VIRTUALENV="$HOME/.local/bin/virtualenv"
 _add_path "$HOME/.local/bin"
 _add_path "$HOME/.cargo/bin"
 # _add_path "$HOME/.local/opt/flutter/bin"
-#
-_add_path "$NPM_CONFIG_PREFIX/bin"
+
+#_add_path "$NPM_CONFIG_PREFIX/bin"
 _add_path "$PYENV_ROOT/bin"
 
 ################################################################################
@@ -139,7 +139,7 @@ _setup_script "$HOME/.config/broot/launcher/bash/br"
 _setup_command pyenv init -
 _setup_command pyenv virtualenv-init -
 #_setup_command zoxide init bash
-_setup_command fasd --init auto
+#_setup_command fasd --init auto
 _setup_command atuin init bash
 
 # Run this last so that it can take other prompt hacks into account
