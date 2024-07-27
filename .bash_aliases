@@ -7,8 +7,8 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Enable exa, if available
-if command -v exa &> /dev/null; then
-    FANCY_LS='exa --classify'
+if command -v eza &> /dev/null; then
+    FANCY_LS='eza --classify'
     alias l="$FANCY_LS"
     alias ls="$FANCY_LS"
     alias ll="$FANCY_LS --all --group --long"
