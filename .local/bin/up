@@ -3,9 +3,11 @@
 
 set -e
 
-banner apt
-sudo apt update
-sudo apt -y full-upgrade
+if [[ -x $(command -v apt) ]]; then
+    banner apt
+    sudo apt update
+    sudo apt -y full-upgrade
+fi
 
 if [[ -x $(command -v flatpak) ]]; then
     banner flatpak
