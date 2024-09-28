@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Citrix Workspace
+Exec=/usr/bin/toolbox run --container toolbox /opt/Citrix/ICAClient/wfica -geometry 1600x900 %f
+TryExec=/usr/bin/toolbox
+Icon=/home/joe/.local/share/icons/citrix.png
+Categories=Office;Internet
+NoDisplay=true
+StartupNotify=true

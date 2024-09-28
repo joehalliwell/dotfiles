@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Visual Studio Code
+Comment=Modern editor
+Categories=Development;System;Utility
+Exec=/usr/bin/toolbox run -c toolbox code
+Icon=/var/home/joe/.local/share/icons/vscode.svg
+StartupWMClass=code-url-handler
