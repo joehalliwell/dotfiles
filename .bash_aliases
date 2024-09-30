@@ -20,6 +20,7 @@ if command -v bat &> /dev/null; then
     alias cat='bat'
     export BAT_THEME="TwoDark"
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export MANROFFOPT="-c"
 fi
 
 # Add an "alert" alias for long running commands.  Use like so:
