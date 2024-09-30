@@ -3,6 +3,6 @@ Type=Application
 Name=Visual Studio Code
 Comment=Modern editor
 Categories=Development;System;Utility
-Exec=/usr/bin/toolbox run -c toolbox code
+Exec=/usr/bin/toolbox run -c toolbox code --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto
 Icon=/var/home/joe/.local/share/icons/vscode.svg
 StartupWMClass=code-url-handler
