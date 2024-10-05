@@ -8,10 +8,13 @@ ExecStartPre=/bin/mkdir -p %h/Cloud/%i
 ExecStart= \
   /usr/bin/rclone mount \
     --verbose \
+    # --allow-non-empty \
     --fast-list \
     --buffer-size 1G \
     --vfs-cache-mode full \
-    --vfs-cache-max-size 200M \
+    --vfs-cache-max-size 500M \
+    --vfs-cache-max-age 168h \
+    --vfs-cache-poll-interval 5m \
     %i: %h/Cloud/%i
 ExecStop=/usr/bin/fusermount -u %h/Cloud/%i
 
