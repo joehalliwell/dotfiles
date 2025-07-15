@@ -29,6 +29,8 @@ ssh_only = false
 format = "[$path]($style)[$read_only]($read_only_style) "
 read_only = " "
 style = "bright-cyan"
+truncate_to_repo = false
+truncation_symbol = "…/"
 
 [username]
 format = "[$user]($style) on "
