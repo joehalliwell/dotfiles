@@ -33,3 +33,9 @@ if [[ -x $(command -v pipx) ]]; then
 else
     echo "Skipping pipx update"
 fi
+
+if [[ -x $(command -v toolbox) ]]; then
+    banner toolbox
+    podman pull ghcr.io/joehalliwell/toolbox:latest
+fi
+
