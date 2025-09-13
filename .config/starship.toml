@@ -1,6 +1,7 @@
 # Print a new line at the start of the prompt
 # add_newline = true
 
+
 [character]
 # 🌞 🌛 ♍ 💎 🙏 ䷕  ∴
 error_symbol = "[](bold red) "
@@ -111,5 +112,3 @@ symbol = " "
 
 [swift]
 symbol = "ﯣ "
-
-
