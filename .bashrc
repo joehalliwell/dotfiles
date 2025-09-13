@@ -124,9 +124,6 @@ export PROJECT_HOME="$HOME/work"
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV="$HOME/.local/bin/virtualenv"
 
-# Make cargo apps more portable
-export CARGO_INSTALL_OPTS="--features vendored-libgit2" 
-
 _add_path "$HOME/.local/bin"
 _add_path "$HOME/.cargo/bin"
 # _add_path "$HOME/.local/opt/flutter/bin"
