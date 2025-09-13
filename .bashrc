@@ -70,6 +70,9 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # Disable annoying attempts to create a keyring for pip
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
+# Preferable to vi
+export EDITOR=vim
+
 ################################################################################
 # Paths
 ################################################################################
