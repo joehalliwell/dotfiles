@@ -116,7 +116,7 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_CONFIG_PREFIX/share/man"
 export NPM_CONFIG_PREFIX="$HOME/.local/opt/node"
 export PYENV_ROOT="$HOME/.pyenv"
 export NLTK_DATA="$HOME/.local/opt/nltk_data"
-export COMMONPLACE="$HOME/work/commonplace-private"
+export COMMONPLACE_ROOT="$HOME/work/commonplace-private"
 
 # Virtualenvwrapper setup
 export WORKON_HOME="$HOME/.venv"
