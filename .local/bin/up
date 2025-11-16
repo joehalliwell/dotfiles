@@ -34,8 +34,14 @@ else
     echo "Skipping pipx update"
 fi
 
+i f[[ -x $(command -v npm) ]]; then
+    banner npm
+    npm update -g
+else
+    echo "Skipping npm update"
+fi
+
 if [[ -x $(command -v toolbox) ]]; then
     banner toolbox
     podman pull ghcr.io/joehalliwell/toolbox:latest
 fi
-
