@@ -55,10 +55,13 @@ alias wttr="curl https://wttr.in"
 alias words="find . -type f -print0 | sort -z | wc -w --files0-from - | tail -n1"
 
 # Notes
+
 alias commonplace="git --git-dir=$COMMONPLACE_ROOT/.git --work-tree=$COMMONPLACE_ROOT"
 alias cca="commonplace add --all $COMMONPLACE_ROOT; commonplace commit -m 'Routine updates'"
 alias ccs="cca; commonplace pull --rebase; commonplace push"
 alias tasks="pushd $COMMONPLACE_ROOT; search '\[ \]'; popd"
+
+alias cmpl="uv --project /home/work/commonplace run commonplace"
 
 # System management
 alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
