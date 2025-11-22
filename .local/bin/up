@@ -7,6 +7,8 @@ if [[ -x $(command -v apt) ]]; then
     banner apt
     sudo apt update
     sudo apt -y full-upgrade
+else
+    echo "Skipping apt update"
 fi
 
 if [[ -x $(command -v flatpak) ]]; then
@@ -34,9 +36,17 @@ else
     echo "Skipping pipx update"
 fi
 
-i f[[ -x $(command -v npm) ]]; then
+if [[ -x $(command -v uv) ]]; then
+    banner uv
+    echo Installed: $(uv tool list | grep -v '^-' | awk '{print $1}')
+    uv tool upgrade --all
+else
+    echo "Skipping uv tool update"
+fi
+
+if [[ -x $(command -v npm) ]]; then
     banner npm
-    npm update -g
+    npx npm-check --global --update-all
 else
     echo "Skipping npm update"
 fi
