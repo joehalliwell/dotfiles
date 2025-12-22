@@ -56,22 +56,33 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
 ################################################################################
 # Utility configuration
 ################################################################################
-
 # Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-export LESS='--quit-if-one-screen --ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
 
-# Coloured GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+################################################################################
+# Environment configuration
+################################################################################
 
-# Disable annoying attempts to create a keyring for pip
-export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+# Populate the environment from systemd environment
+refresh_env() {
+    # 1. Force systemd to re-parse ~/.config/environment.d/*.conf
+    systemctl --user daemon-reload
 
-# Preferable to vi
-export EDITOR=vim
+    # 2. Import the new environment, respecting the denylist
+    while IFS='=' read -r key value; do
+        [[ -z "$key" || -z "$value" ]] && continue
+        case "$key" in
+            PWD|SHLVL|_) continue ;;
+        esac
+        export "$key=$value"
+    done < <(systemctl --user show-environment)
+}
+
+refresh_env
 
 ################################################################################
 # Paths
@@ -86,6 +97,20 @@ function _add_path() {
     fi
     export PATH="$PATH:$path"
 }
+
+# Preserve MANPATH if you already defined it somewhere in your config.
+# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+export MANPATH="${MANPATH-$(manpath)}:$NPM_CONFIG_PREFIX/share/man"
+
+_add_path "$HOME/.local/bin"
+_add_path "$HOME/.cargo/bin"
+_add_path "$NPM_CONFIG_PREFIX/bin"
+_add_path "$PYENV_ROOT/bin"
+_add_path "$HOME/.foundry/bin"
+
+################################################################################
+# Setup commands/scripts
+################################################################################
 
 # Run an eval-based setup command
 function _setup_command {
@@ -108,36 +133,7 @@ function _setup_script {
   source "$script"
 }
 
-# Preserve MANPATH if you already defined it somewhere in your config.
-# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
-export MANPATH="${MANPATH-$(manpath)}:$NPM_CONFIG_PREFIX/share/man"
-
-# Set npm -g installation prefix
-export NPM_CONFIG_PREFIX="$HOME/.local/opt/node"
-export PYENV_ROOT="$HOME/.pyenv"
-export NLTK_DATA="$HOME/.local/opt/nltk_data"
-export COMMONPLACE_ROOT="$HOME/work/commonplace-private"
-
-# Virtualenvwrapper setup
-export WORKON_HOME="$HOME/.venv"
-export PROJECT_HOME="$HOME/work"
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV="$HOME/.local/bin/virtualenv"
-
-_add_path "$HOME/.local/bin"
-_add_path "$HOME/.cargo/bin"
-# _add_path "$HOME/.local/opt/flutter/bin"
-
-_add_path "$NPM_CONFIG_PREFIX/bin"
-_add_path "$PYENV_ROOT/bin"
-
-
-################################################################################
-# Setup commands/scripts
-################################################################################
-
 _setup_script "$HOME/.local/share/blesh/ble.sh"
-#_setup_script "$HOME/.local/bin/virtualenvwrapper.sh"
 _setup_script "$HOME/.config/broot/launcher/bash/br"
 
 _setup_command pyenv init -
@@ -149,10 +145,7 @@ _setup_command atuin init bash
 # Run this last so that it can take other prompt hacks into account
 _setup_command starship init bash
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+# Source alias definitions.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi

@@ -61,7 +61,7 @@ alias cca="commonplace add --all $COMMONPLACE_ROOT; commonplace commit -m 'Routi
 alias ccs="cca; commonplace pull --rebase; commonplace push"
 alias tasks="pushd $COMMONPLACE_ROOT; search '\[ \]'; popd"
 
-alias cmpl="uv --project /home/work/commonplace run commonplace"
+alias cmpl="uv --project $HOME/work/commonplace run commonplace"
 
 # System management
 alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
