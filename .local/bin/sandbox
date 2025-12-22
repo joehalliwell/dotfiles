@@ -1,0 +1,19 @@
+#!/usr/bin/bash
+# Scratch Jupyter Lab for random hacking
+# Deps: ipykernel jupyter ipython
+
+sandbox_env="$HOME/.venv/sandbox"
+sandbox_dir="$HOME/Dropbox/Notebooks"
+
+if [ ! -d  "$sandbox_env" ]; then
+    echo "No sandbox virtual environment in $sandbox_env!";
+    return
+fi
+if [ ! -d "$sandbox_dir" ]; then
+    echo "No sandbox dir $sandbox_dir!";
+    return
+fi
+source "$sandbox_env/bin/activate"
+python3 -m ipykernel install --user --name sandbox
+jupyter lab --ip 0.0.0.0 --notebook-dir "$sandbox_dir"
+deactivate
