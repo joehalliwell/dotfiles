@@ -69,17 +69,11 @@ fi
 
 # Populate the environment from systemd environment
 refresh_env() {
-    # 1. Force systemd to re-parse ~/.config/environment.d/*.conf
     systemctl --user daemon-reload
 
-    # 2. Import the new environment, respecting the denylist
-    while IFS='=' read -r key value; do
-        [[ -z "$key" || -z "$value" ]] && continue
-        case "$key" in
-            PWD|SHLVL|_) continue ;;
-        esac
-        export "$key=$value"
-    done < <(systemctl --user show-environment)
+    # Process substitution allows us to filter, then source the result safely.
+    # We strip PWD, SHLVL, and _ to protect the shell state.
+    source <(systemctl --user show-environment | grep -vE '^(PATH|PWD|SHELL|SHLVL|_)=')
 }
 
 refresh_env
