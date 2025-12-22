@@ -1,9 +1,5 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export AOC_ROOT:/home/joe/work/advent\x2dof\x2dcode/
-SETUVAR --export COMMONPLACE_ROOT:/home/joe/work/commonplace\x2dprivate/
-SETUVAR --export GIT_EDITOR:vim
-SETUVAR --export NPM_CONFIG_PREFIX:/var/home/joe/\x2elocal/opt/node/
 SETUVAR __fish_initialized:3800
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
