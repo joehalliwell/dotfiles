@@ -7,19 +7,27 @@ FONT=$HOME/.fonts/Bungee-Regular.ttf
 STYLES=(
     "-fill #a7a -stroke #727" # pink
     "-fill #7a7 -stroke #272" # green
-    "-fill #aa7 -stroke #772" # yellow
+    "-fill #bb7 -stroke #b72" # yellow
     "-fill #7aa -stroke #277" # blue
 )
+COUNTFILE=$HOME/.local/state/banner/count
+
+if [ ! -f $COUNTFILE ]; then
+    mkdir -p $(dirname $COUNTFILE)
+    echo 0 > $COUNTFILE
+fi
 
 # First choice: render to image then terminal
 if [ -x $(command -v magick) -a -x $(command -v viu)  ]; then
+    read count < $COUNTFILE
     magick -background transparent \
-            ${STYLES[ $RANDOM % ${#STYLES[@]} ]} \
+            ${STYLES[ $count % ${#STYLES[@]} ]} \
            -strokewidth 5 \
            -pointsize 96 \
            -font "$FONT" \
            label:"$@" PNG:- \
     | viu -t -h15 -
+    echo $(( count + 1 )) > $COUNTFILE
 # Use toilet
 elif [ -x $(command -v toilet) ]; then
     toilet -f mono9 --termwidth "$@"
