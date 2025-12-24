@@ -36,7 +36,6 @@ alias venv="python3 -m venv"
 alias open="xdg-open"
 alias copy="xclip -selection clipboard"
 alias paste="xclip -selection clipboard -out"
-alias banner="toilet -f mono9 --termwidth"
 alias cl="clear"
 function gnome-font() {
     font="$1"
@@ -66,10 +65,6 @@ alias cmpl="uv --project $HOME/work/commonplace run commonplace"
 # System management
 alias dotfiles="git --git-dir=$HOME/work/dotfiles/.git --work-tree=$HOME"
 
-# Extra fasd aliases
-alias co='a -e code'
-alias o='a -e xdg-open'
-if [[ $(type -t _fasd_bask_hook_cmd_complete) == function ]]; then _fasd_bash_hook_cmd_complete co o; fi
 
 function today() {
     # Create an commonplace journal entry for today and open it
@@ -97,4 +92,3 @@ function search() {
         rg --vimgrep --color ansi "$query" | sk --ansi --print0 | cut -z -d : -f 1-3 | xargs -0 -r code -g
     fi
 }
-
