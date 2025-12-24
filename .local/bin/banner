@@ -1,10 +1,29 @@
 #!/bin/bash
-### Display a banner -- ideally using toilet
+### Display a banner
 
 set -e
 
-if [[ -x $(command -v toilet) ]]; then
+FONT=$HOME/.fonts/Bungee-Regular.ttf
+STYLES=(
+    "-fill #a7a -stroke #727" # pink
+    "-fill #7a7 -stroke #272" # green
+    "-fill #aa7 -stroke #772" # yellow
+    "-fill #7aa -stroke #277" # blue
+)
+
+# First choice: render to image then terminal
+if [ -x $(command -v magick) -a -x $(command -v viu)  ]; then
+    magick -background transparent \
+            ${STYLES[ $RANDOM % ${#STYLES[@]} ]} \
+           -strokewidth 5 \
+           -pointsize 96 \
+           -font "$FONT" \
+           label:"$@" PNG:- \
+    | viu -t -h15 -
+# Use toilet
+elif [ -x $(command -v toilet) ]; then
     toilet -f mono9 --termwidth "$@"
+# Just echo
 else
     line=$(echo "$@" | sed "s/./=/g")
     echo "$line"
