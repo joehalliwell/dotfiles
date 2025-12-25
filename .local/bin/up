@@ -1,7 +1,8 @@
 #!/bin/bash
 ### Update everything
 
-set -e
+
+#set -e
 
 if [[ -x $(command -v apt) ]]; then
     banner apt
