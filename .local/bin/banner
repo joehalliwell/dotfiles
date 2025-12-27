@@ -25,16 +25,16 @@ if [ -x $(command -v magick) -a -x $(command -v viu)  ]; then
            -strokewidth 5 \
            -pointsize 96 \
            -font "$FONT" \
-           label:"$@" PNG:- \
+           "label:$*" PNG:- \
     | viu -t -h15 -
     echo $(( count + 1 )) > $COUNTFILE
 # Use toilet
 elif [ -x $(command -v toilet) ]; then
-    toilet -f mono9 --termwidth "$@"
+    toilet -f mono9 --termwidth "$*"
 # Just echo
 else
     line=$(echo "$@" | sed "s/./=/g")
     echo "$line"
-    echo "$@"
+    echo "$*"
     echo "$line"
 fi
