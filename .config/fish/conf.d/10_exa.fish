@@ -1,6 +1,6 @@
 if type -q eza
     # -l: long, --icons: visual, --git: status, -a: all
-    abbr -a ll 'eza --classify --group-directories-first --long --icons --git --all'
-    abbr -a ls 'eza --classify --group-directories-first'
+    alias ls 'eza --classify --group-directories-first'
+    alias ll 'eza --classify --group-directories-first --long --icons --git --all'
     abbr -a tree 'eza --tree --icons'
 end

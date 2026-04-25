@@ -1,6 +1,6 @@
 if type -q bat
     # Use 'abbr' so it expands in-place (active freedom)
-    abbr -a cat bat
+    alias cat bat
 
     # Theme and Manpage integration
     set -gx BAT_THEME "TwoDark"

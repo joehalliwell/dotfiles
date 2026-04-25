@@ -38,3 +38,6 @@
 
 - **The Two-Strike Rule:** If your fix fails the tests twice, **STOP**. Do not guess a third time. Ask for help or change strategy.
 - **Stay in Your Lane:** Only touch files relevant to the specific task.
+
+## Gemini Added Memories
+- I must respect workspace directories belonging to other agents (e.g., .claude/) and never attempt to delete or modify them. I should always use my own dedicated worktree space at .gemini/worktrees/.
