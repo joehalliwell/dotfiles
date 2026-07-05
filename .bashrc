@@ -144,3 +144,5 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Load main completion
+[ -f "/var/home/joe/.local/share/bash-completion/completions/main" ] && . "/var/home/joe/.local/share/bash-completion/completions/main"

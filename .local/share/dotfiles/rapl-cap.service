@@ -1,0 +1,12 @@
+[Unit]
+Description=Cap RAPL power limits
+After=multi-user.target suspend.target hibernate.target hybrid-sleep.target
+# Only fire on this chassis — safe if the unit ever travels with shared config
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/rapl-cap.sh
+ExecCondition=/usr/bin/grep -q UX3405 /sys/class/dmi/id/product_name
+
+[Install]
+WantedBy=multi-user.target suspend.target hibernate.target hybrid-sleep.target
