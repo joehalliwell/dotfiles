@@ -55,4 +55,5 @@ fi
 if [[ -x $(command -v toolbox) ]]; then
     banner toolbox
     podman pull ghcr.io/joehalliwell/toolbox:latest
+    podman image prune -f
 fi
