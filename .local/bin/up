@@ -7,14 +7,14 @@
 if [[ -x $(command -v apt) ]]; then
     banner apt
     sudo apt update
-    sudo apt -y full-upgrade
+    sudo apt --yes full-upgrade
 else
     echo "Skipping apt update"
 fi
 
 if [[ -x $(command -v flatpak) ]]; then
     banner flatpak
-    flatpak uninstall --unused
+    flatpak uninstall --unused --assumeyes
     flatpak --assumeyes update
 else
     echo "Skipping flatpak update"
@@ -39,21 +39,41 @@ fi
 
 if [[ -x $(command -v uv) ]]; then
     banner uv
-    echo Installed: $(uv tool list | grep -v '^-' | awk '{print $1}')
+    echo Installed: $(uv tool list | grep --invert-match '^-' | awk '{print $1}')
     uv tool upgrade --all
 else
     echo "Skipping uv tool update"
 fi
 
-if [[ -x $(command -v npm) ]]; then
+if [[ -x $(command -v npm-check) ]]; then
     banner npm
-    npx npm-check --global --update-all
+    npm-check --global --update-all
 else
     echo "Skipping npm update"
 fi
 
 if [[ -x $(command -v toolbox) ]]; then
     banner toolbox
-    podman pull ghcr.io/joehalliwell/toolbox:latest
-    podman image prune -f
+    image=ghcr.io/joehalliwell/toolbox:latest
+    name=toolbox
+
+    podman pull "$image"
+
+    # A container is pinned to the image ID it was created from; pulling a
+    # newer :latest changes nothing until the container is recreated.
+    want=$(podman image inspect "$image" --format '{{.Id}}')
+    have=$(podman container inspect "$name" --format '{{.Image}}' 2>/dev/null)
+    open=$(podman container inspect "$name" --format '{{len .ExecIDs}}' 2>/dev/null || echo 0)
+
+    if [[ "$want" == "$have" ]]; then
+        echo "toolbox current (${want:0:12})"
+    elif (( open > 0 )); then
+        echo "toolbox stale (${have:0:12} -> ${want:0:12}), $open session(s) open; skipping"
+    else
+        echo "toolbox stale (${have:0:12} -> ${want:0:12}); recreating"
+        podman container exists "$name" && toolbox rm --force "$name"
+        toolbox create --image "$image" "$name"
+    fi
+
+    podman image prune --force --external
 fi
