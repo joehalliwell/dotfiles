@@ -52,28 +52,28 @@ else
     echo "Skipping npm update"
 fi
 
-if [[ -x $(command -v toolbox) ]]; then
+
+if [[ -x $(command -v pacman) ]]; then
+    banner pacman
+    sudo pacman -Syu --noconfirm
+fi
+
+if [[ -x $(command -v yay) ]]; then
+    banner yay
+    yay -Syu --noconfirm
+fi
+
+if [[ "" && -x $(command -v toolbox) ]]; then
     banner toolbox
     image=ghcr.io/joehalliwell/toolbox:latest
     name=toolbox
 
+    podman image prune --force --external
     podman pull "$image"
 
-    # A container is pinned to the image ID it was created from; pulling a
-    # newer :latest changes nothing until the container is recreated.
-    want=$(podman image inspect "$image" --format '{{.Id}}')
-    have=$(podman container inspect "$name" --format '{{.Image}}' 2>/dev/null)
-    open=$(podman container inspect "$name" --format '{{len .ExecIDs}}' 2>/dev/null || echo 0)
-
-    if [[ "$want" == "$have" ]]; then
-        echo "toolbox current (${want:0:12})"
-    elif (( open > 0 )); then
-        echo "toolbox stale (${have:0:12} -> ${want:0:12}), $open session(s) open; skipping"
-    else
-        echo "toolbox stale (${have:0:12} -> ${want:0:12}); recreating"
-        podman container exists "$name" && toolbox rm --force "$name"
-        toolbox create --image "$image" "$name"
-    fi
-
-    podman image prune --force --external
+    # The latest container is probably in use -- running this script, so
+    # so do a little dance to swap the name over
+    podman container exists tmp && podman container rm tmp
+    podman container exists "$name" && podman rename "$name" tmp
+    toolbox create --image "$image" "$name"
 fi
