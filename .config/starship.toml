@@ -37,6 +37,12 @@ truncation_symbol = "…/"
 format = "[$user]($style) on "
 show_always = true
 
+[shell]
+disabled = false
+format = "[$indicator]($style)"
+bash_indicator = "BASH "
+fish_indicator = ""
+
 [aws]
 symbol = "  "
 disabled = true
