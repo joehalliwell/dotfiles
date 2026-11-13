@@ -14,7 +14,7 @@ nset() {
   echo "$new" > "$key"
 }
 
-nset "/sys/devices/platform/asus-nb-wmi/throttle_thermal_policy" 1
+#nset "/sys/devices/platform/asus-nb-wmi/throttle_thermal_policy" 1
 
 nset "$RAPL/constraint_0_power_limit_uw" $PL1
 nset "$RAPL/constraint_1_power_limit_uw" $PL2
