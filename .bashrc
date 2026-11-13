@@ -73,7 +73,9 @@ refresh_env() {
 
     # Process substitution allows us to filter, then source the result safely.
     # We strip PWD, SHLVL, and _ to protect the shell state.
+    set -a
     source <(systemctl --user show-environment | grep -vE '^(PATH|PWD|SHELL|SHLVL|_)=')
+    set +a
 }
 
 refresh_env
