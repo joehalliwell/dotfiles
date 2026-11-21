@@ -1,0 +1,2 @@
+#!/bin/bash
+exec uv run --project "$HOME/work/commonplace" commonplace "$@"
