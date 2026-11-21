@@ -1,0 +1,58 @@
+{
+  "model": "opus",
+  "permissions": {
+    "allow": ["Read(~/.claude/plugins/cache/commonplace/**)"]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "i=$(gh issue list --limit 20 --json number,title --jq '.[] | \"#\\(.number) \\(.title)\"' 2>/dev/null); [ -n \"$i\" ] && jq -n --arg i \"$i\" '{hookSpecificOutput:{hookEventName:\"SessionStart\",additionalContext:(\"Open GitHub issues:\\n\"+$i)}}' || true",
+            "timeout": 10,
+            "statusMessage": "Checking open issues"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "commonplace-skills@commonplace": true,
+    "mattpocock-skills@claude-plugins-official": true
+  },
+  "statusLine": { "type": "command", "command": "~/.claude/statusline.sh" },
+  "effortLevel": "high",
+  "cleanupPeriodDays": 1000,
+  "tui": "fullscreen",
+  "agentPushNotifEnabled": true,
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: PUBLIC — joehalliwell/commonplace (github.com:joehalliwell/commonplace.git). Any push here is publishing.",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: main (default); `main` protected via ruleset `Protect main` (active) on joehalliwell/commonplace",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
+      "**Source control**: The trusted repo (joehalliwell/commonplace, github.com:joehalliwell/commonplace.git) and its remote only — no additional orgs configured",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (hyphen/underscore/dot-delimited)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development — personal knowledge-management tool (Commonplace), archiving/organizing notes, journals, and AI conversation exports",
+      "**Trusted repo**: /var/home/joe/work/commonplace (joehalliwell/commonplace, public) and its configured remote origin (github.com:joehalliwell/commonplace.git) — public repo, so only this repo's own work is OK to push; confidential/personal/secret material is never cleared into it by visibility",
+      "**Org-specific CLIs**: None configured (uv seen frequently in this project's transcripts — standard Python tooling, not org-specific)",
+      "routine under joehalliwell/ prefix: none confirmed beyond the working repo itself — other joehalliwell/* repos under ~/work are candidates only, not corroborated as trusted context for this session"
+    ]
+  }
+}
